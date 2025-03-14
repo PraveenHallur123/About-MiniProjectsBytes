@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Maker - Complete Tech Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00ff88;
+            --secondary: #0a192f;
+            --dark: #020c1b;
+            --light: #ccd6f6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: var(--secondary);
+            color: var(--light);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        .navbar {
+            padding: 1.5rem 5%;
+            background: rgba(10, 25, 47, 0.95);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Sections */
+        section {
+            padding: 8rem 5% 4rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        /* About Section */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        /* Services Grid */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Why Choose Us */
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--primary);
+            font-size: 1.8rem;
+            transition: transform 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Form Styling */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        button {
+            background: var(--primary);
+            color: var(--secondary);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: transform 0.3s;
+            font-size: 1.1rem;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            padding: 2rem 5%;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--secondary);
+                flex-direction: column;
+                padding: 1rem;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+                color: var(--light);
+                font-size: 1.5rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 6rem 5% 3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .service-card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* List Styling */
+        ul {
+            list-style: none;
+            padding: 1rem 0;
+        }
+
+        li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        li::before {
+            content: "▹";
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">MiniProjectsBytes</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#why-us">Why Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+    </nav>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title animate">About Us</h2>
+        <div class="about-content animate">
+            <p>Welcome to MiniProjectsBytes, where innovation meets development. I am a professional Software Engineer offering high-quality software solutions and project development services. With expertise in full-stack development and a passion for creating impactful applications, my goal is to help students, startups, and businesses turn their ideas into reality.</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <h2 class="section-title">Services We Offer</h2>
+        <div class="service-grid">
+            <!-- Academic Projects -->
+            <div class="service-card">
+                <h3>Academic Project Development</h3>
+                <ul>
+                    <li>Mini and Major Projects</li>
+                    <li>Technologies: Java, Python, PHP, C#</li>
+                    <li>Database & Non-database Projects</li>
+                    <li>Example Projects: Login Systems, Management Systems</li>
+                </ul>
+            </div>
+
+            <!-- Custom Software -->
+            <div class="service-card">
+                <h3>Custom Software Development</h3>
+                <ul>
+                    <li>Small-scale Business Solutions</li>
+                    <li>Startup Automation Tools</li>
+                    <li>Desktop & Mobile Applications</li>
+                </ul>
+            </div>
+
+            <!-- Web Development -->
+            <div class="service-card">
+                <h3>Web Development Services</h3>
+                <ul>
+                    <li>Portfolio Websites</li>
+                    <li>E-commerce Solutions</li>
+                    <li>Educational/Blog Websites</li>
+                </ul>
+            </div>
+
+            <!-- Cybersecurity -->
+            <div class="service-card">
+                <h3>Cybersecurity Services</h3>
+                <ul>
+                    <li>Ethical Hacking</li>
+                    <li>Vulnerability Analysis</li>
+                    <li>Security Recommendations</li>
+                </ul>
+            </div>
+
+            <!-- Training -->
+            <div class="service-card">
+                <h3>Training & Tutorials</h3>
+                <ul>
+                    <li>Programming Workshops</li>
+                    <li>Project Creation Guides</li>
+                    <li>Deployment Tutorials</li>
+                </ul>
+            </div>
+
+            <!-- Ready-Made Projects -->
+            <div class="service-card">
+                <h3>Ready-Made Projects</h3>
+                <ul>
+                    <li>Beginner to Advanced Levels</li>
+                    <li>Complete Documentation</li>
+                    <li>Study & Adapt Projects</li>
+                </ul>
+            </div>
+
+            <!-- Hosting -->
+            <div class="service-card">
+                <h3>Hosting & Deployment</h3>
+                <ul>
+                    <li>GitHub/Blogger Hosting</li>
+                    <li>Web App Deployment</li>
+                    <li>Maintenance Support</li>
+                </ul>
+            </div>
+        </div>
+        
+    </section>
+
+
+    <!-- Why Choose Us -->
+    <section class="why-us">
+        <h2 class="section-title">Why Choose Us?</h2>
+        <div class="why-us-grid">
+            <div class="service-card">
+                <h3>Expertise</h3>
+                <p>Years of experience in software development</p>
+            </div>
+            <div class="service-card">
+                <h3>Custom Solutions</h3>
+                <p>Tailored to your specific needs</p>
+            </div>
+            <div class="service-card">
+                <h3>Affordable Pricing</h3>
+                <p>Budget-friendly options</p>
+            </div>
+            <div class="service-card">
+                <h3>Continuous Support</h3>
+                <p>Post-delivery guidance</p>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title animate">Contact Us</h2>
+        <div class="contact-container">
+            <div class="contact-info animate">
+                <p><i class="fas fa-envelope"></i> praveenhallur2003@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +91 9632912346</p>
+                <div class="social-links">
+                    <a href="https://github.com/PraveenHallur123"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/%E0%B2%AA%E0%B3%8D%E0%B2%B0%E0%B2%B5%E0%B3%80%E0%B2%A3-%E0%B2%B9%E0%B2%B3%E0%B3%8D%E0%B2%B3%E0%B3%82%E0%B2%B0-9463ba1bb/"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/mr.praveen_hallur/"><i class="fab fa-instagram"></i></a>
+                    <a href="https://x.com/praveenhallur72?t=x1GfFuSg3qwA6TLlnhVJeQ&s=09"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.facebook.com/praveen.hallur.143?rdid=76ey4WTLWzA9d0nm&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F19sapEapBu%2F"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+            <form class="contact-form animate">
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email" required>
+                <textarea placeholder="Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="animate">
+        <div class="footer-content">
+            <p>Developed by <a href="https://miniprojectbytes.blogspot.com/" style="color: var(--primary);">MiniProjectsBytes</a></p>
+            <p>Created by <a href="https://praveenhallur123.github.io/PraveenHallur123-Praveen---personal-portfolio/" style="color: var(--primary);">Praveen Hallur</a></p>
+            <p>&copy; 2025 All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Form Handling
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will respond within 24 hours.');
+            this.reset();
+        });
+
+        // Scroll Animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('section, .animate').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
